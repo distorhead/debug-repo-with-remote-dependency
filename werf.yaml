@@ -3,8 +3,14 @@ configVersion: 1
 ---
 image: x
 from: ubuntu:20.04
+shell:
+  install:
+  - echo INSTALLING
 git:
 - url: https://github.com/distorhead/debug-repo-with-remote-dependency-denepdant
   add: /
   to: /app
   branch: main
+  stageDependencies:
+    install:
+    - "**/*.go"
